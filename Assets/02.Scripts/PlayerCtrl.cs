@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerCtrl : MonoBehaviour
 {
     private Transform tr;
+    public float moveSpeed = 10.0f; 
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +27,8 @@ public class PlayerCtrl : MonoBehaviour
         //transform.position += new Vector3(0, 0, 1);
 
         // 정규화 벡터를 사용한 코드
-        tr.position += Vector3.forward * 1;
+        //tr.position += Vector3.forward * 1;
+
+        tr.Translate(Vector3.forward * Time.deltaTime * v * moveSpeed);
     }
 }
