@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerCtrl : MonoBehaviour
 {
     private Transform tr;
+    private Animation anim;
     // 이동 속도 변수
     public float moveSpeed = 10.0f; 
     
@@ -15,6 +16,10 @@ public class PlayerCtrl : MonoBehaviour
     void Start()
     {
         tr =  GetComponent<Transform>();
+        anim = GetComponent<Animation>();
+
+        // 애니메이션 실행
+        anim.Play("Idle");
     }
 
     // Update is called once per frame
@@ -39,5 +44,29 @@ public class PlayerCtrl : MonoBehaviour
         tr.Translate(moveDir.normalized * Time.deltaTime  * moveSpeed);
         
         tr.Rotate(Vector3.up * turnSpeed * Time.deltaTime * r);
+        PlayerAnim(h, v);
+    }
+    void PlayerAnim(float h, float v)
+    {
+        if (v >= 0.1f)
+        {
+            anim.CrossFade("RunF", 0.25f);
+        }
+        else if (v <= -0.1f)
+        {
+            anim.CrossFade("RunB", 0.25f);
+        }
+        else if (h >= 0.1f)
+        {
+            anim.CrossFade("RunR", 0.25f);
+        }
+        else if (h <= -0.1f)
+        {
+            anim.CrossFade("RunL", 01.25f);
+        }
+        else
+        {
+            anim.CrossFade("Idle", 0.25f);
+        }
     }
 }
