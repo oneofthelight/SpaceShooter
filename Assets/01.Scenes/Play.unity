@@ -326,6 +326,8 @@ MonoBehaviour:
   targetTr: {fileID: 534717543}
   distance: 10
   height: 2
+  damping: 0.1
+  targetTrOffset: 2
 --- !u!1001 &175234894
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1060,6 +1062,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1239838810, guid: 57cb828eab19b914eae9015b9b13be65, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[1].time
+      value: 0.8772938
+      objectReference: {fileID: 0}
+    - target: {fileID: 1239838810, guid: 57cb828eab19b914eae9015b9b13be65, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[1].value
+      value: 0.37062675
+      objectReference: {fileID: 0}
+    - target: {fileID: 1239838810, guid: 57cb828eab19b914eae9015b9b13be65, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].inSlope
+      value: 0.5698836
+      objectReference: {fileID: 0}
+    - target: {fileID: 1239838810, guid: 57cb828eab19b914eae9015b9b13be65, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].outSlope
+      value: 0.5698836
+      objectReference: {fileID: 0}
+    - target: {fileID: 1239838810, guid: 57cb828eab19b914eae9015b9b13be65, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].outWeight
+      value: 0.18245621
+      objectReference: {fileID: 0}
     - target: {fileID: 8914667734598233573, guid: 57cb828eab19b914eae9015b9b13be65, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -1074,7 +1096,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8914667734598233573, guid: 57cb828eab19b914eae9015b9b13be65, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.306
+      value: 4.93
       objectReference: {fileID: 0}
     - target: {fileID: 8914667734598233573, guid: 57cb828eab19b914eae9015b9b13be65, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1104,10 +1126,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8914667734598233575, guid: 57cb828eab19b914eae9015b9b13be65, type: 3}
-      propertyPath: m_Icon
-      value: 
-      objectReference: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 8914667734598233575, guid: 57cb828eab19b914eae9015b9b13be65, type: 3}
       propertyPath: m_Name
       value: Bullet
