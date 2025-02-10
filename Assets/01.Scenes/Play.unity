@@ -2299,6 +2299,10 @@ PrefabInstance:
       propertyPath: textures.Array.size
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 3000325229907906097, guid: 9faea4d1c99498e4f97b47c2bc3ab069, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5999789648609812524, guid: 9faea4d1c99498e4f97b47c2bc3ab069, type: 3}
       propertyPath: m_RootOrder
       value: 0
