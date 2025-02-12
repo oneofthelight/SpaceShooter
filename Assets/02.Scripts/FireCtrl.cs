@@ -15,10 +15,14 @@ public class FireCtrl : MonoBehaviour
 
     // 오디오 컴포넌트
     private new AudioSource audio;
+    private MeshRenderer muzzleFlash;
 
     void Start()
     {
         audio = GetComponent<AudioSource>();
+        muzzleFlash = firePos.GetComponentInChildren<MeshRenderer>();
+        // 처음 시작할 때 비활성화
+        muzzleFlash.enabled = false;
     }
     void Update()
     {
@@ -33,6 +37,19 @@ public class FireCtrl : MonoBehaviour
         Instantiate(bullet, firePos.position, firePos.rotation);
         // 총소리 발생
         audio.PlayOneShot(fireSfx, 1.0f);
+        // 총구 화염 효과 코루틴 함수 호출
+        StartCoroutine(ShowMuzzleFlash());
+        //StartCoroutine("ShowMuzzleFlash");
     }
 
+    IEnumerator ShowMuzzleFlash()
+    {   
+        // MuzzleFlash 활성화
+        muzzleFlash.enabled = true;
+        // 0.2초동안 대기(제어권 양보)
+        yield return new WaitForSeconds(0.2f);
+
+        // MuzzleFlash 비활성화
+        muzzleFlash.enabled = false;
+    }
 }
