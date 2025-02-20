@@ -5,6 +5,10 @@ using UnityEngine;
 using UnityEngine.AI;
 public class MonsterCtrl : MonoBehaviour
 {
+    // 해시값 추출
+    private readonly int hashTrace = Animator.StringToHash("IsTrace");
+    private readonly int hashAttack = Animator.StringToHash("IsAttack");
+    private readonly int hashhit = Animator.StringToHash("Hit");
     public const float TIMER_CHECK = 0.3f;
     public enum State
     {
@@ -20,13 +24,13 @@ public class MonsterCtrl : MonoBehaviour
     private Transform monsterTr;
     private Transform playerTr;
     private NavMeshAgent agent;
-    private Animator anim;
+    private Animator animator;
     void Start()
     {
         monsterTr = GetComponent<Transform>();
         playerTr = GameObject.FindWithTag("PLAYER").GetComponent<Transform>();
         agent = GetComponent<NavMeshAgent>();
-        anim = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
         // 몬스터의 상태를 체크하는 코루틴 함수 호출
         StartCoroutine(CheckMonsterState());
         // 상태에 따라 몬스터의 행돌을 수행하는 코루틴 함수 호출
@@ -76,19 +80,31 @@ public class MonsterCtrl : MonoBehaviour
             {
                 case State.IDLE:
                     agent.isStopped = true;
-                    anim.SetBool("IsTrace", false);
+                    animator.SetBool(hashTrace, false);
                     break;
                 case State.TRACE:
                     agent.SetDestination(playerTr.position);
                     agent.isStopped = false;
-                    anim.SetBool("IsTrace", true);
+                    animator.SetBool(hashTrace, true);
+                    animator.SetBool(hashAttack, false);
                     break;
                 case State.ATTACK:
+                animator.SetBool(hashAttack, true);
                     break;
                 case State.DIE:
                     break;
             }
             yield return new WaitForSeconds(TIMER_CHECK);
+        }
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.collider.CompareTag("BULLET"))
+        {
+            // 충돌한 총알 삭제
+            Destroy(collision.gameObject);
+            // 피격 애니메이션 실행
+            animator.SetTrigger(hashhit);
         }
     }
 }
