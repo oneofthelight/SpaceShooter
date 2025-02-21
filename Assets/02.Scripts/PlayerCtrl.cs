@@ -7,17 +7,19 @@ public class PlayerCtrl : MonoBehaviour
 {
     private Transform tr;
     private Animation anim;
-    // 이동 속도 변수
-    public float moveSpeed = 10.0f; 
+    private readonly float initHp = 100.0f; // 초기 생명
+    private const float DAMAGE_HP = 10.0f;    
+    public float currHp; // 현제 생명값 
+    public float moveSpeed = 10.0f;  // 이동 속도 변수
     
-    public float turnSpeed = 80.0f;
+    public float turnSpeed = 80.0f;  // 회전속도 변수
 
     // Start is called before the first frame update
     void Start()
     {
         tr =  GetComponent<Transform>();
         anim = GetComponent<Animation>();
-
+        currHp = initHp;
         // 애니메이션 실행
         anim.Play("Idle");
     }
@@ -68,5 +70,21 @@ public class PlayerCtrl : MonoBehaviour
         {
             anim.CrossFade("Idle", 0.25f);
         }
+    }
+    private void OnTriggerEnter(Collider coll)
+    {
+        if(currHp >= 0.0f && coll.CompareTag("PUNCH"))
+        {
+            currHp -= DAMAGE_HP;
+            Debug.Log($"Player HP = {currHp/initHp}");
+            if (currHp <= 0.0f)
+            {
+                PlayerDie();
+            }
+        }
+    }
+    private void PlayerDie()
+    {
+        Debug.Log("Player Die!!");
     }
 }
