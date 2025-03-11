@@ -121,6 +121,8 @@ public class PlayerCtrl : MonoBehaviour
         //GetComponent<FireCtrl>().OnPlayerDie();
         // 주인공 사망 이벤트 발생
         OnPlayerDie();
+        //GameObject.Find("GameMgr").GetComponent<GameManager>().IsGameOver = true;
+        GameManager.instance.IsGameOver = true;
     }
     
 }
