@@ -116,13 +116,14 @@ public class PlayerCtrl : MonoBehaviour
         }
         */
         // todo: UI 에서 "Game Over"라고 보여주게 하자
-        // ui 직접 연결 말고, 이벤트 호출을 통해서
+        // todo: ui 직접 연결 말고, 이벤트 호출을 통해서
 
         //GetComponent<FireCtrl>().OnPlayerDie();
         // 주인공 사망 이벤트 발생
         OnPlayerDie();
         //GameObject.Find("GameMgr").GetComponent<GameManager>().IsGameOver = true;
         GameManager.instance.IsGameOver = true;
+        GameManager.instance.DisplayerGameOver();
     }
     
 }

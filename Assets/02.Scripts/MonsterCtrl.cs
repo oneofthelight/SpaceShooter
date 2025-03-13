@@ -28,6 +28,7 @@ public class MonsterCtrl : MonoBehaviour
     public State state = State.IDLE;
     public float traceDist = 10.0f;
     public float attackDist = 2.0f;
+    public const int SCORE_KILL = 50;
     public bool isDie = false;
     private Transform monsterTr;
     private Transform playerTr;
@@ -167,6 +168,7 @@ public class MonsterCtrl : MonoBehaviour
             if(hp <= 0)
             {
                 state = State.DIE;
+                GameManager.instance.DisplayerScore(SCORE_KILL);
             }
         }
     }
