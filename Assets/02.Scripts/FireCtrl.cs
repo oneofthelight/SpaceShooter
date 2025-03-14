@@ -6,6 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class FireCtrl : MonoBehaviour
 {
+    public const float BULLET_DISTANCE = 50.0f;
     // 총알 프리펩
     public GameObject bullet;
     // 총알 발사 좌표
@@ -17,6 +18,7 @@ public class FireCtrl : MonoBehaviour
     private new AudioSource audio;
     private MeshRenderer muzzleFlash;
     private bool isPlayerDie;
+    private RaycastHit hit;
 
     void OnEnable()
     {
@@ -41,10 +43,18 @@ public class FireCtrl : MonoBehaviour
     void Update()
     {
         if (isPlayerDie) return;
+
+        Debug.DrawRay(firePos.position, firePos.forward * BULLET_DISTANCE, Color.green);
         // 마우스 왼쪽 버튼을 클릭 했을 때 Fire 함수 호출
         if (Input.GetMouseButtonDown(0))
         {
             Fire();
+            int mask = 1 << LayerMask.NameToLayer("MONSTER_BODY");
+            if(Physics.Raycast(firePos.position, firePos.forward, out hit, BULLET_DISTANCE, 1<< mask))
+            {
+                Debug.Log($"Hit={hit.transform.name}");
+                hit.transform.GetComponent<MonsterCtrl>()?.OnDamage(hit.point, hit.normal);
+            }
         } 
     }
     void Fire()
@@ -59,7 +69,16 @@ public class FireCtrl : MonoBehaviour
 
     IEnumerator ShowMuzzleFlash()
     {   
+        //Vector2 offset = new Vector2(Random.Range(0, 2), Random.Range(0, 2)) * 0.5f;
         // MuzzleFlash 활성화
+        /*
+        muzzleFlash.material.mainTextureOffset = offset;
+        float angle = Random.Range(0, 360);
+        muzzleFlash.transform.localRotation = Quaternion.Euler(0, 0, angle);
+        float scale = Random.Range(1.0f, 2.0f);
+        muzzleFlash.transform.localScale = Vector3.one * scale;
+        */
+
         muzzleFlash.enabled = true;
         // 0.2초동안 대기(제어권 양보)
         yield return new WaitForSeconds(0.2f);

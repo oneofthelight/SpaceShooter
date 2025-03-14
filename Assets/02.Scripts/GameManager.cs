@@ -4,6 +4,7 @@ using System.ComponentModel;
 using UnityEngine;
 using TMPro;
 using Mono.Cecil.Cil;
+using UnityEditor;
 
 public class GameManager : MonoBehaviour
 {
@@ -110,6 +111,12 @@ public class GameManager : MonoBehaviour
         }
         scoreText.text = $"<color=#00ff00>SCORE: </color><color=#ff0000>{totScore:#,##0}</color>";
         PlayerPrefs.SetInt(KEY_SCORE, totScore);
+    }
+    [MenuItem("MyMenu/SpaceShooter/Reset score")]
+    public static void ResetScore()
+    {
+        PlayerPrefs.SetInt(KEY_SCORE, 0);
+        Debug.Log("Successfully reset score.");
     }
     public void DisplayerGameOver()
     {
