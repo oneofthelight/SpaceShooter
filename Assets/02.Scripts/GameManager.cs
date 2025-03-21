@@ -5,6 +5,7 @@ using UnityEngine;
 using TMPro;
 using Mono.Cecil.Cil;
 using UnityEditor;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -20,8 +21,21 @@ public class GameManager : MonoBehaviour
     public float createTime = 3.0f;
     public TMP_Text scoreText;
     public GameObject panelGameOver;
+    public TMP_Text killText;
     private bool isGameOver;
     private int totScore = 0;
+    private int killcount;
+    public int KillCount
+    {
+        get {return killcount;}
+        set {killcount = value;
+            if(killcount > 99)
+            {
+                killcount = 99;
+            }
+            DisplayKillCount();
+        }
+    }
     public bool IsGameOver
     {
         get{return isGameOver;}
@@ -111,6 +125,10 @@ public class GameManager : MonoBehaviour
         }
         scoreText.text = $"<color=#00ff00>SCORE: </color><color=#ff0000>{totScore:#,##0}</color>";
         PlayerPrefs.SetInt(KEY_SCORE, totScore);
+    }
+    public void DisplayKillCount()
+    {
+        killText.text = $"{killcount:00}";
     }
     [MenuItem("MyMenu/SpaceShooter/Reset score")]
     public static void ResetScore()

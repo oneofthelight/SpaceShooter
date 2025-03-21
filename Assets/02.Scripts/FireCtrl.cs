@@ -50,7 +50,7 @@ public class FireCtrl : MonoBehaviour
         {
             Fire();
             int mask = 1 << LayerMask.NameToLayer("MONSTER_BODY");
-            if(Physics.Raycast(firePos.position, firePos.forward, out hit, BULLET_DISTANCE, 1<< mask))
+            if(Physics.Raycast(firePos.position, firePos.forward, out hit, BULLET_DISTANCE, mask))
             {
                 Debug.Log($"Hit={hit.transform.name}");
                 hit.transform.GetComponent<MonsterCtrl>()?.OnDamage(hit.point, hit.normal);

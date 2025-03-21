@@ -150,6 +150,13 @@ public class MonsterCtrl : MonoBehaviour
             yield return new WaitForSeconds(TIMER_CHECK);
         }
     }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.collider.CompareTag("BULLET"))
+        {
+            Destroy(collision.gameObject);
+        }
+    }
     public void OnDamage(Vector3 pos, Vector3 normal)
     {
 
@@ -161,10 +168,11 @@ public class MonsterCtrl : MonoBehaviour
         ShowBloodEffect(pos, rot);
         // 몬스터의 HP 처리
         hp -= HIT_MONSTER_HP;
-        if (hp <= 0)
+        if ((hp <= 0) && (state != State.DIE))
         {
             state = State.DIE;
             GameManager.instance.DisplayerScore(SCORE_KILL);
+            GameManager.instance.KillCount++;
         }
     }
     private void ShowBloodEffect(Vector3 pos, Quaternion rot)

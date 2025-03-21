@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour
 {
     // 버튼을 연결할 변수
@@ -15,7 +15,7 @@ public class UIManager : MonoBehaviour
     void Start ()
     {
         // UnityAction
-        action = () => OnButtonClick(startButton.name);
+        action = () => OnStartClick();
         startButton.onClick.AddListener(action);
         // 무명메서드
         optionButton.onClick.AddListener(delegate {OnButtonClick(optionButton.name);});
@@ -42,4 +42,9 @@ public class UIManager : MonoBehaviour
         Debug.Log($"Click Butto : {rt.localScale.x}");
     }
     #endregion
+    public void OnStartClick()
+    {
+        SceneManager.LoadScene("Level_01");
+        SceneManager.LoadScene("Play", LoadSceneMode.Additive);
+    }
 }
