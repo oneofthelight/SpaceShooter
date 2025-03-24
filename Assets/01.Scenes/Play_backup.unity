@@ -371,8 +371,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1374461288}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &70724992
 MonoBehaviour:
@@ -478,6 +478,7 @@ MonoBehaviour:
   createTime: 3
   scoreText: {fileID: 1670788804}
   panelGameOver: {fileID: 1335692066}
+  killText: {fileID: 0}
 --- !u!4 &108069648
 Transform:
   m_ObjectHideFlags: 0
@@ -3717,8 +3718,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 70724991}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
