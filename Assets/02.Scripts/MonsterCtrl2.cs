@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UIElements;
-public class MonsterCtrl : MonoBehaviour
+public class MonsterCtrl2 : MonoBehaviour
 {
     private const int MAX_MONSTER_HP = 100;
     private const int HIT_MONSTER_HP = 10;
@@ -192,7 +192,7 @@ public class MonsterCtrl : MonoBehaviour
         if(state == State.DIE) return;
         // 추적 정지, 애니메이션 실행
         agent.isStopped = true;
-        animator.SetFloat(hashSpeed, Random.Range(0.8f, 1.2f));
+        //animator.SetFloat(hashSpeed, Random.Range(0.8f, 1.2f));
         animator.SetTrigger(hashPlayerDie);
     }
 
